@@ -22,6 +22,20 @@ exports.user_create = (req, res) => {
   })
 }
 
+exports.user_details = (req, res) => {
+
+  User.findById('5be2f02a4e75c249f2e0065e', function (err, user) {
+    if (err) return next(err);
+
+    user.comparePassword('1111', function(err, isMatch) {
+      if (err) throw err;
+      console.log('Test', isMatch); // -&gt; Password123: true
+    });
+    res.send(user);
+
+  })
+};
+
 /*
 exports.user_create = (req, res) => {
   let user = new User(
