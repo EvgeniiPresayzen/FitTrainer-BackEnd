@@ -10,7 +10,7 @@ const WorkoutSchema = new Schema ({
 
 const WorkoutsSchema = new Schema ({
   workouts: [WorkoutSchema],
-  user: {type: Schema.Types.ObjectId, ref: 'Person'}
+  user: {type: Schema.Types.ObjectId, ref: 'User'}
 })
 
 module.exports = mongoose.model('Workouts', WorkoutsSchema)
