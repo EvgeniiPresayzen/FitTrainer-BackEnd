@@ -11,11 +11,14 @@ router.get('/test', user_controller.test);
 //add
 router.post('/create', user_controller.user_create);
 //id status
+/*
 router.get('/:id', user_controller.user_details);
 //id:update
 router.put('/:id/update', user_controller.user_update);
 //id:delete
 router.delete('/:id/delete', user_controller.user_delete);
+ */
+
 module.exports = router;
 
 

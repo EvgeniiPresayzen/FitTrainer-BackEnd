@@ -5,6 +5,22 @@ exports.test = (req, res) => {
   res.send('Greetings from the Test controller!');
 };
 
+exports.user_create = (req, res) => {
+  let user = new User(
+    {
+      email: req.body.email,
+      password: req.body.password
+    }
+  )
+  console.log(user)
+
+  user.save((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.send('User Created successfully')
+  })
+}
 
 /*
 exports.user_create = (req, res) => {
