@@ -22,12 +22,12 @@ exports.user_create = (req, res) => {
   })
 }
 
-exports.user_details = (req, res) => {
+exports.user_details = (req, res, next) => {
 
-  User.findById('5be2f02a4e75c249f2e0065e', function (err, user) {
+  User.findOne({email: req.body.email}, function (err, user) {
     if (err) return next(err);
 
-    user.comparePassword('1111', function(err, isMatch) {
+    user.comparePassword(req.body.password, function(err, isMatch) {
       if (err) throw err;
       console.log('Test', isMatch); // -&gt; Password123: true
     });

@@ -11,7 +11,7 @@ router.get('/test', user_controller.test);
 //add
 router.post('/create', user_controller.user_create);
 //id status
-router.get('/user', user_controller.user_details);
+router.post('/user', user_controller.user_details);
 /*
 router.get('/:id', user_controller.user_details);
 //id:update
