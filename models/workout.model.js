@@ -2,8 +2,9 @@ const mongoose = require('mongoose'),
   Schema = mongoose.Schema
 
 const WorkoutSchema = new Schema ({
+  data: { type: String, required: true, unique: true },
   index: Number,
-  exercise: {type.Schema.Types.ObjectId, ref: 'Exercise'},
+  exercise: {type: Schema.Types.ObjectId, ref: 'Exercise'},
   repeat: Number,
   measurement: Number
 })
