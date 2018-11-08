@@ -4,8 +4,9 @@ const mongoose = require('mongoose'),
   SALT_WORK_FACTOR = 10;
 
 const UserSchema = new Schema({
-  email: { type: String, required: true, index: { unique: true } },
-  password: { type: String, required: true }
+  email: { type: String, required: true, unique: true, lowercase: true },
+  password: { type: String, required: true },
+  active: { type: Boolean, required: true, default: false}
 });
 
 
