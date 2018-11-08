@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 // Routes
 const userRouter = require('./routes/user.router');
 const exercisesRouter = require('./routes/exercises.router');
+const workoutsRouter = require('./routes/workouts.router');
 
 const checkToken = require('./config/utils')
 
@@ -51,6 +52,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/exercises', checkToken, exercisesRouter);
+app.use('/workouts', checkToken, workoutsRouter);
 app.use('/fitTrainer', userRouter);
 
 app.use(function(req, res, next) {
