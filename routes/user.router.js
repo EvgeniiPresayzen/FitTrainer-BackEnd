@@ -10,7 +10,6 @@ const User = require('../models/user.model');
 // Validation Schema
 const userSchema = Joi.object().keys({
   email: Joi.string().email().required(),
-  username: Joi.string().required(),
   password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
   confirmationPassword: Joi.any().valid(Joi.ref('password')).required()
 });
@@ -86,12 +85,12 @@ router.route('/register')
       Token: <b>${secretToken}</b>
       <br/>
       On the following page:
-      <a href="http://localhost:5000/users/verify">http://localhost:5000/users/verify</a>
+      <a href="http://localhost:1235/users/verify">http://localhost:5000/users/verify</a>
       <br/><br/>
       Have a pleasant day.`
 
       // Send email
-      await mailer.sendEmail('admin@codeworkrsite.com', result.value.email, 'Please verify your email!', html);
+      await mailer.sendEmail('midngizp95@gmail.com', result.value.email, 'Please verify your email!', html);
 
       req.flash('success', 'Please check your email.');
       res.redirect('/users/login');
