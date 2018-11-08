@@ -1,9 +1,13 @@
 //app.js
 const express = require('express');
 const bodyParser = require('body-parser');
-const user = require('./routes/user.router'); // Imports routes for the products
-const app = express();
+// Routes
+const userRouter = require('./routes/user.router');
+const exercisesRouter = require('./routes/exercises.router');
 
+const checkToken = require('./config/utils')
+
+const app = express();
 //const path = require('path');
 const cookieParser = require('cookie-parser');
 //const expressHandlebars = require('express-handlebars');
@@ -24,12 +28,12 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use('/fitTrainer', user);
+app.use(flash());
 
 app.use(cookieParser());
 app.use(session({
   cookie: { maxAge: 60000 },
-  secret: 'codeworkrsecret',
+  secret: 'test',
   saveUninitialized: false,
   resave: false
 }));
@@ -37,7 +41,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(flash());
+
 
 app.use((req, res, next) => {
   res.locals.success_messages = req.flash('success');
@@ -46,6 +50,14 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/exercises', checkToken, exercisesRouter);
+app.use('/fitTrainer', userRouter);
+
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
 let port = 1235;
 app.listen(port, () => {

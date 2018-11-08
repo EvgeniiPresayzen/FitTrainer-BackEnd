@@ -4,6 +4,7 @@ const Joi = require('joi');
 const passport = require('passport');
 const randomstring = require('randomstring');
 const mailer = require('../misc/mailer');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/user.model');
 
@@ -99,22 +100,33 @@ router.route('/register')
     }
   });
 
-router.route('/login')
-  .get(isNotAuthenticated, (req, res) => {
-    res.render('login');
-  })
-  .post(passport.authenticate('local', {
-    successRedirect: '/users/dashboard',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  }));
+router.post('/login', function (req, res, next) {
 
-router.route('/dashboard')
-  .get(isAuthenticated, (req, res) => {
-    res.render('dashboard', {
-      username: req.user.username
+  passport.authenticate('local', {session: false}, (err, user, info) => {
+    console.log('LOGIN',err);
+    console.log('LOGIN',user);
+    if (err || !user) {
+      return res.status(400).json({
+        message: info ? info.message : 'Login failed',
+        user   : user
+      });
+    }
+
+    req.login(user, {session: false}, (err) => {
+      if (err) {
+        res.send(err);
+      }
+      console.log(user._id)
+      const token = jwt.sign({ id: user._id }, '10', {
+        expiresIn: 604800 // 1 week
+      });
+      console.log('TOKEN',token)
+      return res.json({user, token});
     });
-  });
+  })
+  (req, res);
+
+});
 
 router.route('/verify')
   .get(isNotAuthenticated, (req, res) => {
@@ -123,9 +135,10 @@ router.route('/verify')
   .post(async (req, res, next) => {
     try {
       const { secretToken } = req.body;
-
+      console.log(secretToken)
       // Find account with matching secret token
       const user = await User.findOne({ 'secretToken': secretToken });
+      console.log(user)
       if (!user) {
         req.flash('error', 'No user found.');
         res.redirect('/users/verify');
