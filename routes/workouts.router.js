@@ -29,13 +29,6 @@ router.post('/create', async (req, res, next) => {
 
     // Save user to DB
     console.log(req.body)
-    let count = 0
-    const test = await Workout.find({'user': res.locals.user._id });
-    console.log(test)
-    if(test.length > 0){
-      count = test.length
-    }
-
     let workouts = []
     req.body.map(item => {
         workouts.push({data: item.data,
