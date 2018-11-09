@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
+var mongoose = require('mongoose');
 //const Joi = require('joi');
 
+const Workouts = require('../models/workout.model')
 const Workout = require('../models/workout.model')
 
 /*
@@ -17,7 +19,7 @@ const userSchema = Joi.object().keys({
 router.put('/update', async (req, res, next) => {
   try {
     console.log(res.locals.user._id, req.body)
-      Workout.updateOne({ '_id': req.body.id, 'user': res.locals.user._id }, req.body,
+      Workouts.updateOne({ '_id': req.body.id, 'user': res.locals.user._id }, req.body,
         function (err, raw) {
           if (err) return console.log('ERROR')
           console.log('The raw response', raw)
@@ -46,6 +48,8 @@ router.post('/create', async (req, res, next) => {
 
     // Save user to DB
     console.log(req.body)
+
+    /*
     let workouts = []
     req.body.workouts.map(item => {
         workouts.push({
@@ -55,13 +59,29 @@ router.post('/create', async (req, res, next) => {
           measurement: item.measurement})
     })
     console.log(workouts,'TEST WORKOUTS')
-    const newWorkout = new Workout({
+     */
+
+    const newWorkout = new Workouts({
+      _id: new mongoose.Types.ObjectId(),
       user: res.locals.user._id,
       data: req.body.data,
-      workouts: workouts
     })
+    const workouts = req.body.workouts
     console.log('newWorkout', newWorkout)
-    newWorkout.save()
+    newWorkout.save(function (err) {
+      if(err) return console.log(err)
+        workouts.map(item => {
+        const work = new Workout({
+          workoutsId: newWorkout._id,
+          index: count,
+          exercise: item.idEx,
+          repeat: item.repeat,
+          measurement: item.measurement
+        })
+        work.save()
+      })
+
+    })
   } catch (error) {
     next(error)
   }
