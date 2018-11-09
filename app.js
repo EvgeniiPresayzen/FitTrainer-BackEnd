@@ -18,6 +18,12 @@ const passport = require('passport');
 
 require('./config/passport');
 
+// Models
+require('./models/exercise.model');
+require('./models/type.model');
+require('./models/user.model');
+require('./models/workout.model');
+
 const mongoose = require('mongoose');
 let dev_db_url = 'mongodb://localhost:27017/fitTrainer';
 let mongoDB = process.env.MONGODB_URI || dev_db_url;

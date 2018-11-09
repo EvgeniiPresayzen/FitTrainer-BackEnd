@@ -7,4 +7,4 @@ const ExerciseSchema = new Schema ({
   type: {type: Schema.Types.ObjectId, ref: 'Type'}
 })
 
-module.exports = mongoose.model('Exercise', ExerciseSchema)
+module.exports = mongoose.model('Exercise', ExerciseSchema, 'exercise')
