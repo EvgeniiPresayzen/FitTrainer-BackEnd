@@ -1,10 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const Joi = require('joi');
 
 const Exercise = require('../models/exercise.model')
 
-/* GET users listing. */
+/* GET exercises listing. */
 router.get('/all', async (req, res, next) => {
   try {
     const exercises = await Exercise.find({user: res.locals.user._id}).populate('type').
@@ -23,7 +22,7 @@ router.get('/all', async (req, res, next) => {
   res.send('respond with a resource')
 })
 
-/* GET users listing. */
+/* POST create exercise. */
 router.post('/create', async (req, res, next) => {
   try {
     console.log(res.locals.user._id, req.body)
@@ -32,12 +31,18 @@ router.post('/create', async (req, res, next) => {
     if (exercises) {
       return console.log('Error', 'Data is already in use.')
     }
-
+    let count = 0
+    const test = await Exercise.find({'user': res.locals.user._id });
+    console.log(test)
+    if(test.length > 0){
+      count = test.length
+    }
     // Save user to DB
     console.log(req.body.typeID)
     const newExercise = await new Exercise({
       user: res.locals.user._id,
       name: req.body.name,
+      index: count,
       type: req.body.typeID
     })
     console.log('newExercises', newExercise)

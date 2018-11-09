@@ -4,6 +4,7 @@ const mongoose = require('mongoose'),
 const ExerciseSchema = new Schema ({
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   name: String,
+  index: Number,
   type: {type: Schema.Types.ObjectId, ref: 'Type'}
 })
 
