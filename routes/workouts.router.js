@@ -16,13 +16,16 @@ const userSchema = Joi.object().keys({
 router.post('/create', async (req, res, next) => {
   try {
     console.log(res.locals.user._id)
+    console.log(req.body, 'ALLO TEST')
     //const result = Joi.validate(req.body, userSchema);
+    /*
     const workout = await Workout.findOne({ 'data': req.body.data })
     if (workout) {
       req.flash('error', 'Data is already in use.')
       res.redirect('/workouts/create')
       return
     }
+     */
 
     // Save user to DB
     console.log(req.body)
@@ -32,15 +35,22 @@ router.post('/create', async (req, res, next) => {
     if(test.length > 0){
       count = test.length
     }
-    const newWorkout = await new Workout({
+
+    let workouts = []
+    req.body.map(item => {
+        workouts.push({data: item.data,
+          index: item.index,
+          exercise: item.exerciseID,
+          repeat: item.repeat,
+          measurement: item.measurement})
+    })
+    console.log(workouts,'TEST WORKOUTS')
+    const newWorkout = new Workout({
       user: res.locals.user._id,
-      workouts: [{data: req.body.data,
-        index: count,
-        exercise: req.body.exerciseID,
-        repeat: req.body.repeat,
-        measurement: req.body.measurement}] })
+      workouts: workouts
+    })
     console.log('newWorkout', newWorkout)
-    await newWorkout.save()
+    newWorkout.save()
   } catch (error) {
     next(error)
   }
