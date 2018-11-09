@@ -21,17 +21,15 @@ router.post('/create', async (req, res, next) => {
     //const result = Joi.validate(req.body, userSchema)
     const exercises = await Exercises.findOne({ 'name': req.body.name })
     if (exercises) {
-      req.flash('error', 'Data is already in use.')
-      res.redirect('/workouts/create')
-      return
+      return console.log('Error', 'Data is already in use.')
     }
 
     // Save user to DB
-    console.log(req.body.type.label)
+    console.log(req.body.typeID)
     const newExercises = await new Exercises({
       user: res.locals.user._id,
       name: req.body.name,
-      type: {label: req.body.type.label, value: req.body.type.value}
+      type: req.body.typeID
     })
     console.log('newExercises', newExercises)
     await newExercises.save()
