@@ -6,10 +6,9 @@ const Exercise = require('../models/exercise.model')
 /* GET exercises listing. */
 router.get('/all', async (req, res, next) => {
   try {
-    const exercises = await Exercise.find({user: res.locals.user._id}).populate('type').
-      exec((err, exercises) => {
-      if(exercises) {
-        return console.log('FIND',exercises)
+    const exercises = await Exercise.find({ user: res.locals.user._id }).populate('type').exec((err, exercises) => {
+      if (exercises) {
+        return console.log('FIND', exercises)
       }
       return console.log('Error find EXERCISES')
     })
@@ -26,11 +25,13 @@ router.get('/all', async (req, res, next) => {
 router.put('/update', async (req, res, next) => {
   try {
     console.log(res.locals.user._id, req.body)
-    Exercise.updateOne({ '_id': req.body.id, 'user': res.locals.user._id }, {'name': req.body.name, 'type': req.body.typeID},
-      function (err, raw) {
-        if(err) return console.log('ERROR')
-        console.log('The raw response', raw)
-      })
+    req.body.map(item => {
+      Exercise.updateOne({ '_id': item.id, 'user': res.locals.user._id }, item,
+        function (err, raw) {
+          if (err) return console.log('ERROR')
+          console.log('The raw response', raw)
+        })
+    })
 
   } catch (error) {
     next(error)
@@ -47,9 +48,9 @@ router.post('/create', async (req, res, next) => {
       return console.log('Error', 'Data is already in use.')
     }
     let count = 0
-    const test = await Exercise.find({'user': res.locals.user._id });
+    const test = await Exercise.find({ 'user': res.locals.user._id })
     console.log(test)
-    if(test.length > 0){
+    if (test.length > 0) {
       count = test.length
     }
     // Save user to DB
