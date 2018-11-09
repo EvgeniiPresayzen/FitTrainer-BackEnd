@@ -12,6 +12,26 @@ const userSchema = Joi.object().keys({
 });
  */
 
+/*PUT update workouts */
+
+router.put('/update', async (req, res, next) => {
+  try {
+    console.log(res.locals.user._id, req.body)
+    req.body.map(item => {
+      Workout.updateOne({ 'data': item.data, 'user': res.locals.user._id, workouts: {"_id": item.workouts.id} }, item,
+        function (err, raw) {
+          if (err) return console.log('ERROR')
+          console.log('The raw response', raw)
+        })
+    })
+
+  } catch (error) {
+    next(error)
+  }
+})
+
+
+
 /* POST create workout */
 router.post('/create', async (req, res, next) => {
   try {
@@ -30,8 +50,8 @@ router.post('/create', async (req, res, next) => {
     // Save user to DB
     console.log(req.body)
     let workouts = []
-    req.body.map(item => {
-        workouts.push({data: item.data,
+    req.body.workouts.map(item => {
+        workouts.push({
           index: item.index,
           exercise: item.exerciseID,
           repeat: item.repeat,
@@ -40,6 +60,7 @@ router.post('/create', async (req, res, next) => {
     console.log(workouts,'TEST WORKOUTS')
     const newWorkout = new Workout({
       user: res.locals.user._id,
+      data: req.body.data,
       workouts: workouts
     })
     console.log('newWorkout', newWorkout)
