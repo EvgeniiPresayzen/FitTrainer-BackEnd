@@ -17,14 +17,11 @@ const userSchema = Joi.object().keys({
 router.put('/update', async (req, res, next) => {
   try {
     console.log(res.locals.user._id, req.body)
-    req.body.map(item => {
-      Workout.updateOne({ 'data': item.data, 'user': res.locals.user._id, workouts: {"_id": item.workouts.id} }, item,
+      Workout.updateOne({ '_id': req.body.id, 'user': res.locals.user._id }, req.body,
         function (err, raw) {
           if (err) return console.log('ERROR')
           console.log('The raw response', raw)
         })
-    })
-
   } catch (error) {
     next(error)
   }
