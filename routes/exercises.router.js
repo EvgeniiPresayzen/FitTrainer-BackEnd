@@ -1,14 +1,43 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
+const Joi = require('joi');
+
+const Exercises = require('../models/exercise.model')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/', function (req, res, next) {
+  res.send('respond with a resource')
+})
 
 /* GET user profile. */
-router.get('/profile', function(req, res, next) {
-  res.send(req.user);
-});
+const userSchema = Joi.object().keys({
+  name: Joi.string().required(),
+  type: Joi.array().required(),
+})
+/* GET users listing. */
+router.post('/create', async (req, res, next) => {
+  try {
+    console.log(res.locals.user._id, req.body)
+    //const result = Joi.validate(req.body, userSchema)
+    const exercises = await Exercises.findOne({ 'name': req.body.name })
+    if (exercises) {
+      req.flash('error', 'Data is already in use.')
+      res.redirect('/workouts/create')
+      return
+    }
 
-module.exports = router;
+    // Save user to DB
+    console.log(req.body.type.label)
+    const newExercises = await new Exercises({
+      user: res.locals.user._id,
+      name: req.body.name,
+      type: {label: req.body.type.label, value: req.body.type.value}
+    })
+    console.log('newExercises', newExercises)
+    await newExercises.save()
+  } catch (error) {
+    next(error)
+  }
+  res.send('respond with a resource')
+})
+module.exports = router

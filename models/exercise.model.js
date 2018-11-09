@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
 const ExerciseSchema = new Schema ({
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   name: String,
-  type: String
+  type: [{ label:  String, value: String}]
 })
 
 module.exports = mongoose.model('Exercise', ExerciseSchema)
