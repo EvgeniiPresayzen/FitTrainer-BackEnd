@@ -36,6 +36,40 @@ router.put('/update', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+  res.send('Update')
+})
+
+/* DELETE exercise */
+
+router.delete('/delete', async (req, res, next) => {
+  try {
+    console.log(res.locals.user._id, req.body.id)
+    Exercise.deleteOne({ '_id': req.body.id },function (err, item) {
+      if(err){
+        console.log(err)
+      }
+
+    })
+  } catch (error) {
+    next(error)
+  }
+  let count = 0
+  const oldExercises = await Exercise.find({ 'user': res.locals.user._id })
+  const newExercises = [...oldExercises]
+   console.log('OLD EXERCISE',oldExercises)
+  newExercises.map(item => {
+    item.index = count
+    count += 1
+  })
+  console.log('NEW EXERCISES', newExercises)
+  newExercises.map(item => {
+    Exercise.updateOne({ '_id': item._id }, item, function (err, raw) {
+      if (err) return console.log('ERROR')
+      console.log('The raw response', raw)
+    })
+  })
+  // Exercise.update({"_id": })
+  res.send('DELETE')
 })
 
 /* POST create exercise. */
@@ -49,7 +83,7 @@ router.post('/create', async (req, res, next) => {
     }
     let count = 0
     const test = await Exercise.find({ 'user': res.locals.user._id })
-    console.log(test)
+    console.log('test',test)
     if (test.length > 0) {
       count = test.length
     }
@@ -66,6 +100,6 @@ router.post('/create', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
-  res.send('respond with a resource')
+  res.send('CREATE')
 })
 module.exports = router
