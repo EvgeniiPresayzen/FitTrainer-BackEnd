@@ -22,6 +22,21 @@ router.get('/all', async (req, res, next) => {
   res.send('respond with a resource')
 })
 
+/*PUT update exercise */
+router.put('/update', async (req, res, next) => {
+  try {
+    console.log(res.locals.user._id, req.body)
+    Exercise.updateOne({ '_id': req.body.id, 'user': res.locals.user._id }, {'name': req.body.name, 'type': req.body.typeID},
+      function (err, raw) {
+        if(err) return console.log('ERROR')
+        console.log('The raw response', raw)
+      })
+
+  } catch (error) {
+    next(error)
+  }
+})
+
 /* POST create exercise. */
 router.post('/create', async (req, res, next) => {
   try {
