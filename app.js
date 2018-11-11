@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const userRouter = require('./routes/user.router');
 const exercisesRouter = require('./routes/exercises.router');
 const workoutsRouter = require('./routes/workouts.router');
+const cors = require('cors')
 
 const checkToken = require('./config/utils')
 
@@ -48,7 +49,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.use(cors())
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    next()
+})
 
 app.use((req, res, next) => {
   res.locals.success_messages = req.flash('success');

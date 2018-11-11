@@ -86,12 +86,12 @@ router.route('/register')
       Token: <b>${secretToken}</b>
       <br/>
       On the following page:
-      <a href="http://localhost:1235/users/verify">http://localhost:5000/users/verify</a>
+      <a href="http://localhost:3000/verification/${secretToken}&${result.value.email}">http://localhost:5000/users/verify</a>
       <br/><br/>
       Have a pleasant day.`
 
       // Send email
-      await mailer.sendEmail('midngizp95@gmail.com', result.value.email, 'Please verify your email!', html);
+      await mailer.sendEmail('midnightzp95@gmail.com', result.value.email, 'Please verify your email!', html);
 
       req.flash('success', 'Please check your email.');
       res.redirect('/users/login');
@@ -134,14 +134,15 @@ router.route('/verify')
   })
   .post(async (req, res, next) => {
     try {
-      const { secretToken } = req.body;
+      console.log(req.body, 'TEST')
+      const secretToken = req.body.secretToken;
       console.log(secretToken)
       // Find account with matching secret token
       const user = await User.findOne({ 'secretToken': secretToken });
       console.log(user)
       if (!user) {
         req.flash('error', 'No user found.');
-        res.redirect('/users/verify');
+        res.redirect('/fitTrainer/verify');
         return;
       }
 
@@ -149,8 +150,8 @@ router.route('/verify')
       user.secretToken = '';
       await user.save();
 
-      req.flash('success', 'Thank you! Now you may login.');
-      res.redirect('/users/login');
+      res.send('success', 'Thank you! Now you may login.');
+      //res.redirect('/fitTrainer/login');
     } catch(error) {
       next(error);
     }
