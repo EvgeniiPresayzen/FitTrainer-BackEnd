@@ -53,7 +53,6 @@ passport.use('jwt', new JWTStrategy({
     secretOrKey   : '10'
   },
   function (jwtPayload, cb) {
-    console.log('ALLO', jwtPayload)
     //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
     return User.findById(jwtPayload.id)
       .then(user => {

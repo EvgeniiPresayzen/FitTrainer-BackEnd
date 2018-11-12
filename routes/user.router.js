@@ -12,7 +12,7 @@ const User = require('../models/user.model');
 const userSchema = Joi.object().keys({
   email: Joi.string().email().required(),
   password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
-  confirmationPassword: Joi.any().valid(Joi.ref('password')).required()
+  //confirmationPassword: Joi.any().valid(Joi.ref('password')).required()
 });
 
 // Authorization
@@ -93,8 +93,7 @@ router.route('/register')
       // Send email
       await mailer.sendEmail('midnightzp95@gmail.com', result.value.email, 'Please verify your email!', html);
 
-      req.flash('success', 'Please check your email.');
-      res.redirect('/users/login');
+      return res.json({user})
     } catch(error) {
       next(error);
     }
@@ -120,8 +119,9 @@ router.post('/login', function (req, res, next) {
       const token = jwt.sign({ id: user._id }, '10', {
         expiresIn: 604800 // 1 week
       });
+      const email = user.email;
       console.log('TOKEN',token)
-      return res.json({user, token});
+      return res.json({email, token});
     });
   })
   (req, res);
@@ -149,11 +149,15 @@ router.route('/verify')
       user.active = true;
       user.secretToken = '';
       await user.save();
-
-      res.send('success', 'Thank you! Now you may login.');
+        const token = jwt.sign({ id: user._id }, '10', {
+            expiresIn: 604800 // 1 week
+        });
+        console.log(token)
+        const email = user.email;
+        return res.json({token, email})
       //res.redirect('/fitTrainer/login');
     } catch(error) {
-      next(error);
+        return res.json({error})
     }
   })
 

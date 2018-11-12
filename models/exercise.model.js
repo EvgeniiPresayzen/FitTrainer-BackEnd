@@ -5,7 +5,7 @@ const ExerciseSchema = new Schema ({
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   name: String,
   index: Number,
-  type: {type: Schema.Types.ObjectId, ref: 'Type'}
+  type: String
 })
 
 module.exports = mongoose.model('Exercise', ExerciseSchema, 'exercise')

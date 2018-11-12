@@ -93,7 +93,7 @@ router.post('/create', async (req, res, next) => {
             user: res.locals.user._id,
             name: req.body.name,
             index: count,
-            type: req.body.typeID
+            type: req.body.type
         })
         console.log('newExercises', newExercise)
         await newExercise.save()
