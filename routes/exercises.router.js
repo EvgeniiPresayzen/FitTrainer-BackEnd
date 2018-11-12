@@ -6,14 +6,8 @@ const Exercise = require('../models/exercise.model')
 /* GET exercises listing. */
 router.get('/all', async (req, res, next) => {
     try {
-        const exercises = await Exercise.find({user: res.locals.user._id}).populate('type').exec((err, exercises) => {
-            if (exercises) {
-                return console.log('FIND', exercises)
-            }
-            return console.log('Error find EXERCISES')
-        })
-
-        return console.log(exercises)
+        const exercises = await Exercise.find({user: res.locals.user._id})
+        return res.json({exercises})
 
     } catch (error) {
         next(error)
@@ -26,7 +20,7 @@ router.put('/update', async (req, res, next) => {
     try {
         console.log(res.locals.user._id, req.body)
         req.body.map(item => {
-            Exercise.updateOne({'_id': item.id, 'user': res.locals.user._id}, item,
+            Exercise.updateOne({'_id': item._id, 'user': res.locals.user._id}, item,
                 function (err, raw) {
                     if (err) return console.log('ERROR')
                     console.log('The raw response', raw)
@@ -44,6 +38,7 @@ router.put('/update', async (req, res, next) => {
 router.delete('/delete', async (req, res, next) => {
     try {
         console.log(res.locals.user._id, req.body.id)
+        console.log('ID EXERCISES',req.body.id)
         Exercise.deleteOne({'_id': req.body.id}, function (err, item) {
             if (err) {
                 console.log(err)

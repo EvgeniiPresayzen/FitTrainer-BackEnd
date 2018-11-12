@@ -1,4 +1,4 @@
 module.exports = {
-  MAILGUN_USER: 'midnightzp95@gmail.com',
-  MAILGUN_PASS: 'bgnttaepaqbojpxq'
+  MAILGUN_USER: 'incode.test12@gmail.com',
+  MAILGUN_PASS: 'incodetest12f'
 };

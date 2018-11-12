@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3937f7ab-48ca-4e5e-a1c3-217f8e3123e3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/passport.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/passport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/exercise.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/exercise.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/mailer.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/mailer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/user.controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/authentication.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/exercises.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/exercises.router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/user.router.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.router.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,7 +21,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/workouts.router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1148" />
+            <state relative-caret-position="-716" />
           </provider>
         </entry>
       </file>
@@ -37,26 +37,40 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/exercises.router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1008">
-              <caret line="95" column="31" lean-forward="true" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/passport.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="51" column="47" lean-forward="true" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="53" />
+            <state relative-caret-position="508">
+              <caret line="33" column="1" selection-start-line="18" selection-start-column="22" selection-end-line="33" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/exercise.model.js">
+        <entry file="file://$PROJECT_DIR$/routes/user.router.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
-              <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+              <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/misc/mailer.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/mailer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/utils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -73,24 +87,30 @@
         <option value="$PROJECT_DIR$/../projectfittrainer/src/axios-order.jsx" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/views/Login/SignUp/SignUp.jsx" />
-        <option value="$PROJECT_DIR$/../projectfittrainer/src/store/actions/index.jsx" />
-        <option value="$PROJECT_DIR$/../projectfittrainer/src/routes/dashboard.jsx" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/layouts/Dashboard/Dashboard.jsx" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/views/Login/SignIn/SignIn.jsx" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/store/reducers/auth.jsx" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/components/Header/HeaderLinks.jsx" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/store/actions/verification.jsx" />
-        <option value="$PROJECT_DIR$/routes/user.router.js" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/views/Login/Verification/Verification.jsx" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/routes/signIn.jsx" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/index.js" />
         <option value="$PROJECT_DIR$/models/exercise.model.js" />
-        <option value="$PROJECT_DIR$/../projectfittrainer/src/store/actions/auth.jsx" />
         <option value="$PROJECT_DIR$/config/passport.js" />
-        <option value="$PROJECT_DIR$/routes/exercises.router.js" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/axios-orders.jsx" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/store/actions/newExercise.jsx" />
         <option value="$PROJECT_DIR$/../projectfittrainer/src/views/NewExercise/NewExercise.jsx" />
+        <option value="$PROJECT_DIR$/../projectfittrainer/src/store/actions/index.jsx" />
+        <option value="$PROJECT_DIR$/../projectfittrainer/src/store/actions/auth.jsx" />
+        <option value="$PROJECT_DIR$/../projectfittrainer/src/routes/dashboard.jsx" />
+        <option value="$PROJECT_DIR$/../projectfittrainer/src/shared/utility.jsx" />
+        <option value="$PROJECT_DIR$/../projectfittrainer/src/views/Dashboard/Dashboard.jsx" />
+        <option value="$PROJECT_DIR$/../projectfittrainer/src/views/EditExercises/EditExercises.jsx" />
+        <option value="$PROJECT_DIR$/../projectfittrainer/src/store/actions/editExercises.jsx" />
+        <option value="$PROJECT_DIR$/routes/exercises.router.js" />
+        <option value="$PROJECT_DIR$/controllers/user.controller.js" />
+        <option value="$PROJECT_DIR$/routes/user.router.js" />
+        <option value="$PROJECT_DIR$/config/mailer.js" />
       </list>
     </option>
   </component>
@@ -120,17 +140,7 @@
             <path>
               <item name="FitTrainer-BackEnd" type="b2602c69:ProjectViewProjectNode" />
               <item name="FitTrainer-BackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FitTrainer-BackEnd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FitTrainer-BackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FitTrainer-BackEnd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FitTrainer-BackEnd" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="misc" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -174,12 +184,12 @@
       <updated>1541870148053</updated>
       <workItem from="1541870152192" duration="1592000" />
       <workItem from="1541878087767" duration="3769000" />
-      <workItem from="1541967812733" duration="13573000" />
+      <workItem from="1541967812733" duration="18004000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18934000" />
+    <option name="totallyTimeSpent" value="23365000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1299" height="741" extended-state="6" />
@@ -233,41 +243,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/user.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="155" column="33" lean-forward="true" selection-start-line="155" selection-start-column="33" selection-end-line="155" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/type.model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/workouts.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1148" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/exercise.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -278,10 +257,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/exercises.router.js">
+    <entry file="file://$PROJECT_DIR$/routes/workouts.router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="95" column="31" lean-forward="true" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
+        <state relative-caret-position="-716" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/exercise.model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -289,6 +273,47 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="51" column="47" lean-forward="true" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/exercises.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="33" column="1" selection-start-line="18" selection-start-column="22" selection-end-line="33" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/user.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="66" column="1" selection-start-line="66" selection-start-column="1" selection-end-line="66" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middlewares/authentication.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/misc/mailer.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/mailer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
         </state>
       </provider>
     </entry>
